@@ -1,7 +1,7 @@
 
 from django import forms
-from products.models import Product
+from django.db import models
 
-class Basket(forms.Form):
-	product = forms.ModelChoiceField(queryset=Product.objects.all())
-	quantity = forms.IntegerField()
+
+
+

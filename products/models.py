@@ -4,19 +4,26 @@ from django.db import models
 
 
 class Product(models.Model):
-     product_id = models.UUIDField(max_length=15,primary_key=True)
-     name = models.CharField(max_length=255)
-     description = models.TextField()
-     price = models.DecimalField(max_digits=7, decimal_places=2)
-     image = models.ImageField(upload_to='products/')
-     category = models.ForeignKey('Category', on_delete=models.PROTECT)
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    price = models.DecimalField(max_digits=7, decimal_places=2)
+    image = models.ImageField(upload_to='products/')
+    category = models.ForeignKey('Category', on_delete=models.PROTECT)
 
-     def str(self):
-         return [self.name]
+    class Meta:
+        ordering = ['name']
+        indexes = [ models.Index(fields=['id']), models.Index(fields=['name'])]
+    def __str__(self):
+     return self.name
 
 class Category(models.Model):
-   name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
+    class Meta:
+        ordering = ['name']
+        indexes = [models.Index(fields=['name'])]
+        verbose_name = 'category'
+        verbose_name_plural = 'categories'
 
-   def str(self):
-     return [self.name]
+    def __str__(self):
+     return self.name
 

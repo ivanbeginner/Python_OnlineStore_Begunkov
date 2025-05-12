@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'products',
-    'basket'
+    'basket',
+    'orders'
 ]
 
 MIDDLEWARE = [
@@ -131,3 +132,4 @@ STATIC_ROOT="static/"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = "users.User"
+CART_SESSION_ID = 'cart'

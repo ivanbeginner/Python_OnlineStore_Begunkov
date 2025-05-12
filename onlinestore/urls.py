@@ -16,11 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from products.views import product_list, product_detail
-
+from django.urls import include
+from products.urls import urlpatterns as product_urls
+from basket.urls import urlpatterns as cart_patterns
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('products/',product_list,name='product_list'),
-    path('products/int:pk/',product_detail,name='product_detail'),
-    path('add_to_basket/',addd_to_basket,name='add_to_basket')
+    path('',include('products.urls',namespace='products')),
+    path('cart/',include('basket.urls',namespace='cart'))
+
 ]

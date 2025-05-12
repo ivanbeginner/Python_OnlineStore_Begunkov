@@ -1,15 +1,569 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="UTF-8">
-    <title>Products</title>
-</head>
-<body>
-    <h1>Product List</h1>
-    <ul>
-    {% for product in products %}
-        <li>{{ [product.name](http://product.name/) }}</li>
-    {% endfor %}
-    </ul>
-</body>
-</html>
+    <title>Cookies</title>
+    <link rel="stylesheet" href="styles/style.css">
+
+  </head>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: 'Steppe-Book';
+    src: url('../fonts/Steppe-Book.ttf');
+}
+
+@font-face {
+    font-family: 'Steppe-ExtraBold';
+    src: url('../fonts/Steppe-ExtraBold.ttf');
+}
+
+body {
+    background-color: #5243F4;
+    font-family: 'Steppe-Book', sans-serif;
+    color: white;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.button {
+    background-color: #FFFFFF;
+    border-radius: 60px;
+    width: 178px;
+    height: 58px;
+    box-sizing: border-box;
+    padding: 18px;
+    text-align: center;
+    font-size: 18px;
+    color: #5243F4;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+}
+
+.violet-button {
+    background-color: #5243F4;
+    color: white;
+    font-family: 'Steppe-Book', sans-serif;
+    text-align: center;
+}
+
+.button.violet-button:hover {
+    background-color: #3B2CD8;
+}
+
+.button:hover {
+    background-color: #EEEEEE;
+}
+
+.common-title {
+    font-family: 'Steppe-ExtraBold', sans-serif;
+    font-size: 60px;
+    line-height: 100%;
+    text-align: center;
+}
+
+.main {
+    position: relative;
+    overflow: hidden;
+}
+
+.currency {
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    border: 1px solid white;
+    padding: 5px 10px;
+    height: 25px;
+    min-width: 25px;
+    border-radius: 50px;
+    text-align: center;
+    cursor: pointer;
+    line-height: 28px;
+    z-index: 1;
+    user-select: none;
+    transform: scale(1);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+    }
+
+    100% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+}
+
+.header {
+    padding: 40px 0;
+}
+
+.header .container {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    vertical-align: bottom;
+
+}
+
+.menu {
+    margin-left: 250px;
+}
+
+.menu-list {
+    list-style: none;
+    display: flex;
+    gap: 50px;
+}
+
+.menu-item a {
+    font-size: 16px;
+    line-height: 130%;
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
+}
+
+.menu-item a:hover {
+    border-bottom: 2px solid white;
+}
+
+.main-content {
+    padding-top: 161px;
+    padding-bottom: 200px;
+}
+
+.main-info {
+    max-width: 811px;
+}
+
+.main-title {
+    font-family: 'Steppe-ExtraBold', sans-serif;
+    font-size: 90px;
+    line-height: 100%;
+    padding-bottom: 20px;
+}
+
+.main-text {
+    font-family: 'Steppe-Book', sans-serif;
+    max-width: 697px;
+    font-size: 18px;
+    line-height: 130%;
+    padding-bottom: 40px;
+}
+
+.main-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+}
+
+.products {
+    padding: 100px 0;
+    position: relative;
+}
+
+.products-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 90px 24px;
+    margin-top: 110px
+}
+
+.products-item {
+    background-color: #FFFFFF;
+    color: #5D3427;
+}
+
+.products-item-image {
+    height: 202px;
+    text-align: center;
+}
+
+.products-item-image img {
+    height: 272px;
+    top: -70px;
+    position: relative;
+    max-width: 100%;
+}
+
+.products-items-details {
+    padding: 24px;
+}
+
+.products-item-title {
+    font-family: 'Steppe-ExtraBold', sans-serif;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.products-item-text {
+    height: 110px;
+    font-size: 14px;
+    line-height: 120%;
+    margin-bottom: 20px;
+}
+
+.products-item-extra {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.products-item-price {
+    font-family: 'Steppe-ExtraBold', sans-serif;
+    font-size: 24px;
+    color: #5243F4;
+    margin-bottom: 10px;
+}
+
+.products-item-weight {
+    font-size: 12px;
+}
+
+.love {
+    padding: 64px 0 150px 0;
+}
+
+.love-items {
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
+}
+
+.love-item {
+    width: 590px;
+    height: 453px;
+}
+
+.love-item-white {
+    background-color: #FFFFFF;
+    color: #5D3427;
+    padding: 110px 80px;
+    box-sizing: border-box;
+}
+
+.love-item-title {
+    font-family: 'Steppe-ExtraBold', sans-serif;
+    font-size: 24px;
+    line-height: 110%;
+    margin-bottom: 20px;
+}
+
+.love-item-text {
+    font-size: 18px;
+    line-height: 130%;
+}
+
+.order .container {
+    position: relative;
+}
+
+.order {
+    padding-bottom: 102px;
+    position: relative;
+}
+
+.order-block {
+    margin-top: 103px;
+    background: rgb(255 255 255 / 30%);
+    backdrop-filter: blur(50px);
+    display: flex;
+}
+
+.order-form {
+    margin-left: 200px;
+    max-width: 387px;
+    padding: 40px 0 44px 0;
+    box-sizing: border-box;
+}
+
+.order-form-text {
+    font-family: 'Steppe-ExtraBold', sans-serif;
+    font-size: 18px;
+    line-height: 130%;
+}
+
+.order-form-inputs {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.order-form-inputs input {
+    border: 1px solid white;
+    border-radius: 60px;
+    margin-bottom: 16px;
+    padding: 24px 22px;
+    font-size: 18px;
+    width: 385px;
+    height: 68px;
+    background: transparent;
+    box-sizing: border-box;
+    outline: none;
+    color: white;
+}
+
+::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.order-form-inputs .button.violet-button {
+    width: 387px;
+    height: 71px;
+}
+
+.order-block-image {
+    height: 501px;
+    margin-left: 109px;
+}
+
+.order-image {
+    height: 559px;
+    top: -58px;
+    position: relative;
+}
+
+.order-bg-image {
+    position: absolute;
+    top: 0;
+    right: calc(100% - 810px);
+    z-index: -1;
+}
+
+.footer {
+    padding: 126px 0 50px 0;
+    text-align: center;
+}
+
+.rights {
+    margin-top: 14px;
+    font-size: 18px;
+    line-height: 130%;
+}
+
+.line1 {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: calc(100% - 960px);
+}
+
+.line2 {
+    position: absolute;
+    z-index: -1;
+    top: -40px;
+    left: 0;
+}
+
+.line3 {
+    position: absolute;
+    z-index: -1;
+    top: -920px;
+    left: 0;
+}
+/* Стили для иконок в шапке */
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-left: auto; /* Размещаем иконки справа */
+}
+
+.icon-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+  transition: opacity 0.3s ease;
+}
+
+.icon:hover {
+  opacity: 0.8;
+}
+
+.cart-count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: #ff4757;
+  color: white;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>
+  <body>
+    <main class="main">
+      <div class="currency" title="Изменить валюту" id="change-currency">$</div>
+      <header class="header">
+  <div class="container">
+    <div class="logo">
+      <img src="static/images/logo.png" alt="Trendy cookies">
+    </div>
+    <nav class="menu">
+      <ul class="menu-list">
+        <li class="menu-item">
+          <a data-link="products">Каталог</a>
+        </li>
+        <li class="menu-item">
+          <a data-link="love">О нас</a>
+        </li>
+        <li class="menu-item">
+          <a data-link="order">Оформление заказа</a>
+        </li>
+      </ul>
+    </nav>
+    <!-- Добавленные иконки -->
+    <div class="header-icons">
+      <a href="" class="icon-link" title="Профиль">
+        <img src="static/images/user.png" alt="Профиль" class="icon">
+      </a>
+      <a href="{% url "cart:cart_detail" %}" class="icon-link" title="Корзина">
+        <img src="static/images/basket.png" alt="Корзина" class="icon">
+        <span class="cart-count">0</span> <!-- Количество товаров в корзине -->
+      </a>
+    </div>
+  </div>
+</header>
+
+      <section class="main-content">
+        <div class="container">
+          <img src="static/images/logo.png" alt="Line" class="line1">
+          <div class="main-info">
+            <h1 class="main-title">Store</h1>
+            <p class="main-text">
+              Наши рецепты вдыхают жизнь в изысканность ингредиентов: ароматное
+              натуральное масло, свежие сливки, чистый мёд и отборная мука. Мы
+              тщательно отбираем каждый компонент премиального печенья, стремясь
+              подарить вам истинное кулинарное наслаждение.
+            </p>
+            <div class="main-action">
+              <button class="button" id="main-action-button">Заказать</button>
+            </div>
+          </div>
+          <img src="static/images/cookie.png" alt="Cookie" class="main-image">
+        </div>
+      </section>
+
+      <section class="products" id="products">
+        <div class="container">
+          <img src="static/images/line2.png" alt="Line" class="line2">
+          <div class="common-title">Выберите печенье</div>
+
+            <div class="products-items">
+              {% for product in products %}
+              <div class="products-item">
+                <div class="products-item-image">
+                  <td><img src="static/images/cookie.png" alt="Cookie1"></td>
+                </div>
+
+                <div class="products-items-details">
+
+                  <div class="products-item-title">{{ product.name }}</div>
+                  <div class="products-item-text"> {{ product.price }} </div>
+                  <div class="products-item-extra">
+                    <div class="products-item-info">
+                      <div class="products-item-price" data-base-price="20"> </div>
+                    </div>
+                    <a href="{% url "products:product_detail" product.id %}"><button class="button violet-button">Заказать</button></a>
+
+                  </div>
+                </div>
+
+              </div>
+              {% endfor %}
+            </div>
+
+        </div>
+      </section>
+
+      <section class="love" id="love">
+        <div class="container">
+          <div class="common-title">Пекарня с любовью</div>
+          <div class="love-items">
+            <div class="love-item love-item-white">
+              <div class="love-item-title">
+                Приготовлено с&nbsp;заботой, чтобы&nbsp;радовать вас&nbsp;каждый день
+              </div>
+              <div class="love-item-text">
+                Мы&nbsp;с&nbsp;гордостью представляем наше печенье, которое мы&nbsp;выпекаем
+                вручную каждый день с&nbsp;1995&nbsp;года, используя только лучшие
+                ингредиенты. Погрузитесь в&nbsp;мир&nbsp;изысканных лакомств,
+                приготовленных с&nbsp;применением передовых технологий, и&nbsp;насладитесь
+                их&nbsp;неповторимым вкусом.
+              </div>
+            </div>
+            <div class="love-item love-item-image">
+              <img src="static/images/love.png" alt="Love">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="order" id="order">
+        <img src="static/images/line3.png" alt="Line" class="line3">
+        <div class="container">
+          <div class="common-title">Закажите печенье</div>
+          <img src="static/images/breadcrumbs.png" alt="Bread crumbs" class="order-bg-image">
+          <div class="order-block">
+            <div class="order-form">
+              <div class="order-form-text">
+                Откройте для&nbsp;себя волшебство вкуса с&nbsp;нашим премиальным печеньем!
+                Закажите прямо сейчас и&nbsp;окунитесь в&nbsp;мир&nbsp;сладких наслаждений.
+              </div>
+              <div class="order-form-inputs">
+                <input type="text" placeholder="Выберите печенье" id="product">
+                <input type="text" placeholder="Ваше имя" id="name">
+                <input type="text" placeholder="Ваш номер телефона" id="phone">
+                <button class="button violet-button" id="order-action" onclick="document.location='../pages/login/basket'">
+                  Оформить заказ
+                </button>
+              </div>
+            </div>
+            <div class="order-block-image">
+              <img src="static/images/order.png" alt="Cookies" class="order-image">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="logo">
+          <img src="static/images/logo.png" alt="Logo">
+        </div>
+        <div class="rights">«Все&nbsp;права защищены»</div>
+      </footer>
+    </main>
+
+    <script src="scripts/script.js"></script>
+
+
+</body></html>
