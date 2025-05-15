@@ -1,14 +1,19 @@
 
 # Create your views here.
 from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView, DetailView
 
 from basket.forms import CartForm
 from products.models import Product
+import logging
 
-def product_list(request):
-	products = Product.objects.all()
-	context = {'products': products}
-	return render(request, 'products/product_list.html', context)
+class ProductView(ListView):
+	model = Product
+	template_name = 'products/product_list.html'
+	context_object_name = 'products'
+	def get_queryset(self):
+		return Product.objects.all()
+
 
 def product_detail(request, pk):
 	product = get_object_or_404(Product,id=pk)

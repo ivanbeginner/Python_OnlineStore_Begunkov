@@ -19,9 +19,11 @@ from django.urls import path
 from django.urls import include
 from products.urls import urlpatterns as product_urls
 from basket.urls import urlpatterns as cart_patterns
+from orders.urls import urlpatterns as order_patterns
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('products.urls',namespace='products')),
-    path('cart/',include('basket.urls',namespace='cart'))
-
+    path('cart/',include('basket.urls',namespace='cart')),
+    path('orders/',include('orders.urls',namespace='orders')),
+    path('users/',include('users.urls',namespace='users'))
 ]

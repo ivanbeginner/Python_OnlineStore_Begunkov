@@ -6,7 +6,7 @@
 </head>
 <body>
     <p class="price">${{ product.price }}</p>
-    <form action="{% url "cart:add_to_cart" product.id %}" method="post">
+    <form action="{% url "cart:add_to_cart" product.pk %}" method="post">
     {{ cart_product_form }}
     {% csrf_token %}
     <input type="submit" value="Add to cart">
