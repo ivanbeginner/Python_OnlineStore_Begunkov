@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en"><head>
     <meta charset="UTF-8">
@@ -425,9 +426,7 @@ body {
       <div class="currency" title="Изменить валюту" id="change-currency">$</div>
       <header class="header">
   <div class="container">
-    <div class="logo">
-      <img src="static/images/logo.png" alt="Trendy cookies">
-    </div>
+
     <nav class="menu">
       <ul class="menu-list">
         <li class="menu-item">
@@ -443,12 +442,9 @@ body {
     </nav>
     <!-- Добавленные иконки -->
     <div class="header-icons">
-      <a href="" class="icon-link" title="Профиль">
-        <img src="static/images/user.png" alt="Профиль" class="icon">
-      </a>
+
       <a href="{% url "cart:cart_detail" %}" class="icon-link" title="Корзина">
-        <img src="static/images/basket.png" alt="Корзина" class="icon">
-        <span class="cart-count">0</span> <!-- Количество товаров в корзине -->
+        <img src="{% static 'images/basket.png' %}" alt="Корзина" class="icon">
       </a>
     </div>
   </div>
@@ -456,7 +452,7 @@ body {
 
       <section class="main-content">
         <div class="container">
-          <img src="static/images/logo.png" alt="Line" class="line1">
+
           <div class="main-info">
             <h1 class="main-title">Store</h1>
             <p class="main-text">
@@ -469,20 +465,20 @@ body {
               <button class="button" id="main-action-button">Заказать</button>
             </div>
           </div>
-          <img src="static/images/cookie.png" alt="Cookie" class="main-image">
+
         </div>
       </section>
 
       <section class="products" id="products">
         <div class="container">
-          <img src="static/images/line2.png" alt="Line" class="line2">
+
           <div class="common-title">Выберите печенье</div>
 
             <div class="products-items">
               {% for product in products %}
               <div class="products-item">
                 <div class="products-item-image">
-                  <td><img src="static/images/cookie.png" alt="Cookie1"></td>
+                  <td><img src="{{ product.image.url }}" alt="Cookie1"></td>
                 </div>
 
                 <div class="products-items-details">
@@ -521,18 +517,13 @@ body {
                 их&nbsp;неповторимым вкусом.
               </div>
             </div>
-            <div class="love-item love-item-image">
-              <img src="static/images/love.png" alt="Love">
-            </div>
           </div>
         </div>
       </section>
 
       <section class="order" id="order">
-        <img src="static/images/line3.png" alt="Line" class="line3">
         <div class="container">
           <div class="common-title">Закажите печенье</div>
-          <img src="static/images/breadcrumbs.png" alt="Bread crumbs" class="order-bg-image">
           <div class="order-block">
             <div class="order-form">
               <div class="order-form-text">
@@ -548,22 +539,18 @@ body {
                 </button>
               </div>
             </div>
-            <div class="order-block-image">
-              <img src="static/images/order.png" alt="Cookies" class="order-image">
-            </div>
+
           </div>
         </div>
       </section>
 
       <footer class="footer">
-        <div class="logo">
-          <img src="static/images/logo.png" alt="Logo">
-        </div>
-        <div class="rights">«Все&nbsp;права защищены»</div>
+
+        <div class="rights">«Все права защищены»</div>
       </footer>
     </main>
 
-    <script src="scripts/script.js"></script>
 
 
-</body></html>
+</body>
+</html>

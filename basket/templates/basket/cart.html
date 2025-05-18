@@ -13,13 +13,16 @@
             <th>Quantity</th>
             <th>Remove</th>
             <th>Unit price</th>
-            <th>Price</th>
+
             <th> - </th>
+            <th> + </th>
         </tr>
         </thead>
         <tbody>
+
         {% for item in cart %}
             {% with product=item.product %}
+
                 <tr>
                     <td>{{ product.name }}</td>
                     <td>{{ item.quantity }}</td>
@@ -29,27 +32,35 @@
                             <button type="submit">Remove</button>
                         </form>
                     </td>
-                    <td class="num">${{ item.price }}</td>
-                    <td class="num">${{ item.total_price }}</td>
+                    <td class="num">${{ product.price }}</td>
+
+
                     <td>
                         <form action="{% url 'cart:delete_item' product.id %}" method="post">
                             {% csrf_token %}
                             <button type="submit">-</button>
                         </form>
                     </td>
+                    <td>
+                        <form action="{% url 'cart:add_to_cart' product.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">+</button>
+                        </form>
+                    </td>
                 </tr>
+
             {% endwith %}
         {% endfor %}
+
         <tr class="total">
-            <td>Total</td>
+            <td>Итого</td>
             <td colspan="4"></td>
-            <td class="num">${{ cart.get_total_price }}</td>
+            <td class="num">${{ price }}</td>
         </tr>
         </tbody>
     </table>
     <p class="text-right">
         <a href="{% url "products:product_list"  %}" class="button light">Continue shopping</a>
-        <a href="#" class="button">Checkout</a>
     </p>
     <a href="{% url "orders:create_order" %}"><button>Оформть заказ</button></a>
 </body>

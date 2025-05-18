@@ -29,3 +29,5 @@ class Cart(models.Model):
     def products_price(self):
         return round(self.product.price * self.quantity)
 
+
+
