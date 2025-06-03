@@ -22,18 +22,31 @@ def create_order(request):
         messages.error(request,'Ваша корзина пуста')
         return redirect('cart:cart_detail')
     if request.method=='POST':
-        order_form = OrderForm(request.POST)
-        user = User.objects.get(id=request.user.id)
-        if order_form.is_valid():
-            order = Order(user_id = user.id if request.user.is_authenticated else None,
-                          address=order_form.cleaned_data['address'],
-                          email=order_form.cleaned_data['email'],cart = {'cart':[item.id for item in cart]})
+        if request.user.is_authenticated:
+            order_form = OrderForm(request.POST)
+            user = User.objects.get(id=request.user.id)
+            if order_form.is_valid():
+                order = Order(user_id = user.id if request.user.is_authenticated else None,
+                              address=order_form.cleaned_data['address'],
+                              email=order_form.cleaned_data['email'],cart = {'cart':[item.id for item in cart]})
 
-            order.save()
+                order.save()
 
 
-        messages.success(request,'Заказ офрмлен успешно')
+            messages.success(request,'Заказ офрмлен успешно')
+        else:
+            redirect('users:registration')
     else:
         order_form = OrderForm()
     return render(request,'orders/order.html',{'form':order_form})
 
+def order_detail(request):
+    cart = Cart.objects.filter(user_id=request.user.id)
+    order = Order.objects.filter(user_id=request.user.id)
+    quantities = []
+    for cart_item in order.cart['cart']:
+        for id in cart.id:
+            if cart_item==id:
+                quantities.append(cart.quantity)
+
+    return render(request,'orders/order_detail',context={'quantities':quantities})

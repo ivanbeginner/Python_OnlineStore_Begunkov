@@ -425,31 +425,44 @@ body {
     <main class="main">
       <div class="currency" title="Изменить валюту" id="change-currency">$</div>
       <header class="header">
-  <div class="container">
 
-    <nav class="menu">
-      <ul class="menu-list">
-        <li class="menu-item">
-          <a data-link="products">Каталог</a>
-        </li>
-        <li class="menu-item">
-          <a data-link="love">О нас</a>
-        </li>
-        <li class="menu-item">
-          <a data-link="order">Оформление заказа</a>
-        </li>
-      </ul>
-    </nav>
-    <!-- Добавленные иконки -->
-    <div class="header-icons">
+            <div class="container">
+              {% block navbar%}
+              <nav class="menu">
+                <ul class="menu-list">
 
-      <a href="{% url "cart:cart_detail" %}" class="icon-link" title="Корзина">
-        <img src="{% static 'images/basket.png' %}" alt="Корзина" class="icon">
-      </a>
-    </div>
-  </div>
+                  <li class="menu-item">
+                    <a data-link="order">Оформление заказа</a>
+                  </li>
+                </ul>
+              </nav>
+              <!-- Добавленные иконки -->
+              <div class="header-icons">
+
+                <a href="{% url "cart:cart_detail" %}" class="icon-link" title="Корзина">
+                  <img src="{% static 'images/basket.png' %}" alt="Корзина" class="icon">
+                </a>
+              </div>
+              {% if user.is_authenticated %}
+                <div class="header-icons">
+
+                  <a href="{% url "users:home" %}" class="icon-link" title="Профиль">
+                    <img src="{% static 'images/img.png' %}" alt="Профиль" class="icon">
+                  </a>
+                </div>
+              {% else %}
+              <div class="header-icons">
+
+                  <a href="{% url "users:login" %}" class="icon-link" title="Войти">
+                    <img src="{% static 'images/img.png' %}" alt="Войти" class="icon">
+                  </a>
+                </div>
+              {% endif %}
+                {% endblock navbar %}
+            </div>
+
 </header>
-
+{% block content %}
       <section class="main-content">
         <div class="container">
 
@@ -462,7 +475,7 @@ body {
               подарить вам истинное кулинарное наслаждение.
             </p>
             <div class="main-action">
-              <button class="button" id="main-action-button">Заказать</button>
+              <a href="{% url "cart:cart_detail" %}"><button class="button" id="main-action-button">Заказать</button></a>
             </div>
           </div>
 
@@ -501,49 +514,6 @@ body {
         </div>
       </section>
 
-      <section class="love" id="love">
-        <div class="container">
-          <div class="common-title">Пекарня с любовью</div>
-          <div class="love-items">
-            <div class="love-item love-item-white">
-              <div class="love-item-title">
-                Приготовлено с&nbsp;заботой, чтобы&nbsp;радовать вас&nbsp;каждый день
-              </div>
-              <div class="love-item-text">
-                Мы&nbsp;с&nbsp;гордостью представляем наше печенье, которое мы&nbsp;выпекаем
-                вручную каждый день с&nbsp;1995&nbsp;года, используя только лучшие
-                ингредиенты. Погрузитесь в&nbsp;мир&nbsp;изысканных лакомств,
-                приготовленных с&nbsp;применением передовых технологий, и&nbsp;насладитесь
-                их&nbsp;неповторимым вкусом.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="order" id="order">
-        <div class="container">
-          <div class="common-title">Закажите печенье</div>
-          <div class="order-block">
-            <div class="order-form">
-              <div class="order-form-text">
-                Откройте для&nbsp;себя волшебство вкуса с&nbsp;нашим премиальным печеньем!
-                Закажите прямо сейчас и&nbsp;окунитесь в&nbsp;мир&nbsp;сладких наслаждений.
-              </div>
-              <div class="order-form-inputs">
-                <input type="text" placeholder="Выберите печенье" id="product">
-                <input type="text" placeholder="Ваше имя" id="name">
-                <input type="text" placeholder="Ваш номер телефона" id="phone">
-                <button class="button violet-button" id="order-action" onclick="document.location='../pages/login/basket'">
-                  Оформить заказ
-                </button>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
       <footer class="footer">
 
         <div class="rights">«Все права защищены»</div>
@@ -551,6 +521,6 @@ body {
     </main>
 
 
-
+{% endblock content %}
 </body>
 </html>

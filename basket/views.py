@@ -21,7 +21,8 @@ def add_to_cart(request,product_id):
                 cart.save()
         else:
             Cart.objects.create(user=request.user,product=product,quantity=1)
-    return redirect('cart:cart_detail')
+        return redirect('cart:cart_detail')
+    return redirect('users:login')
 @require_POST
 def cart_remove(request,product_id):
     product = Product.objects.get(pk=product_id)

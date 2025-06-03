@@ -6,16 +6,7 @@ from django.views.generic import CreateView
 
 from users.forms import RegistrationForm
 
-
-
-
 # Create your views here.
-
-
-
-
-
-
 
 def register(request):
     if request.method == 'POST':
@@ -47,6 +38,6 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
-    return redirect('products:product_list')
+    return render(request,'users/logout.html')
 def home(request):
     return render(request,'users/home.html')

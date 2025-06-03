@@ -8,7 +8,7 @@
     <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Оформить заказ</button>
+    <a href="{% url "orders:order_detail" %}"><button type="submit">Оформить заказ</button></a>
     </form>
 </body>
 </html>

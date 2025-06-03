@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+{% extends "products/base.html" %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Cart</title>
 </head>
 <body>
+{% block content%}
     <h1>Your shopping cart</h1>
     <table class="cart">
         <thead>
@@ -60,8 +61,9 @@
         </tbody>
     </table>
     <p class="text-right">
-        <a href="{% url "products:product_list"  %}" class="button light">Continue shopping</a>
+        <a href="{% url "products:product_list" %}"><button>Continue  shopping</button></a>
     </p>
     <a href="{% url "orders:create_order" %}"><button>Оформть заказ</button></a>
+{% endblock content%}
 </body>
 </html>

@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "products/base.html" %}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -99,6 +99,9 @@ body {
 
 </style>
 <body>
+{% block content %}
+
+
 <form method="post" action="{% url 'cart:add_to_cart' product.id%}">
     {% csrf_token %}
     <div class="card">
@@ -113,7 +116,7 @@ body {
     </div>
 
 </form>
-
+{% endblock content %}
 
 </body>
 </html>
