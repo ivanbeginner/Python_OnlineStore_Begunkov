@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
@@ -14,14 +14,7 @@ from users.forms import RegistrationForm
 
 
 
-class RegisterView(CreateView):
-    form_class = UserCreationForm
-    template_name = 'users/register.html'
-    success_url = reverse_lazy('login')
-    def get_context_data(self,  **kwargs):
-        context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title='Registration')
-        return dict(list(context.items() + list(c_def.items())))
+
 
 
 def register(request):
@@ -52,5 +45,8 @@ def login_user(request):
     else:
         return render(request,'users/login.html')
 
+def logout_user(request):
+    logout(request)
+    return redirect('products:product_list')
 def home(request):
     return render(request,'users/home.html')
