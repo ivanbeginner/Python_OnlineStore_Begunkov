@@ -5,8 +5,8 @@
     <title>Детали заказа</title>
 </head>
 <body>
-{% for quantity in quantities %}
-{{ quantity }}
+{% for product,quantity in products.items %}
+{{ product }} - {{ quantity }}
 {% endfor %}
 </body>
 </html>

@@ -6,6 +6,7 @@ from django.contrib import messages
 from basket.models import Cart
 from orders.forms import OrderForm
 from orders.models import Order
+from products.models import Product
 
 User = get_user_model()
 
@@ -41,12 +42,14 @@ def create_order(request):
     return render(request,'orders/order.html',{'form':order_form})
 
 def order_detail(request):
-    cart = Cart.objects.filter(user_id=request.user.id)
+
     order = Order.objects.filter(user_id=request.user.id)
     quantities = []
-    for cart_item in order.cart['cart']:
-        for id in cart.id:
-            if cart_item==id:
-                quantities.append(cart.quantity)
-
-    return render(request,'orders/order_detail',context={'quantities':quantities})
+    products = {}
+    for cart_item in order[len(order)-1].cart['cart']:
+        cart = Cart.objects.filter(id=cart_item).first()
+        print(cart)
+        product = Product.objects.filter(id=cart.product.pk).first()
+        products[product.name]=cart.quantity
+    print(products)
+    return render(request,'orders/order_detail.html',context={'products':products})
