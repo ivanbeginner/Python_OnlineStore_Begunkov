@@ -35,6 +35,7 @@ def create_order(request):
 
 
             messages.success(request,'Заказ офрмлен успешно')
+            return redirect('orders:order_detail')
         else:
             redirect('users:registration')
     else:
@@ -44,7 +45,7 @@ def create_order(request):
 def order_detail(request):
 
     order = Order.objects.filter(user_id=request.user.id)
-    quantities = []
+
     products = {}
     for cart_item in order[len(order)-1].cart['cart']:
         cart = Cart.objects.filter(id=cart_item).first()

@@ -5,10 +5,10 @@
     <title>Order</title>
 </head>
 <body>
-    <form method="post">
+    <form method="post" >
     {% csrf_token %}
     {{ form.as_p }}
-    <a href="{% url "orders:order_detail" %}"><button type="submit">Оформить заказ</button></a>
+    <button type="submit">Оформить заказ</button>
     </form>
 </body>
 </html>
