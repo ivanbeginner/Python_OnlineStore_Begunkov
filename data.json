@@ -1,0 +1,22 @@
+[
+    {
+        "model": "products.Product",
+        "pk": 4,
+        "fields": {
+            "name": "Телевизор",
+            "price": 29999,
+            "description": "4K телевизор",
+            "category": 3
+        }
+    },
+    {
+        "model": "products.Product",
+        "pk": 5,
+        "fields": {
+            "name": "Смартфон",
+            "price": 19999,
+            "description": "Флагманский смартфон",
+            "category": 3
+        }
+    }
+]
