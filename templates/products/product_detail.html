@@ -101,21 +101,16 @@ body {
 <body>
 {% block content %}
 
-
-<form method="post" action="{% url 'cart:add_to_cart' product.id%}">
-    {% csrf_token %}
-    <div class="card">
-
-        <div class="pictures">
-            <img src="{{ product.image.url }}" >
-        </div>
-        <p>{{ product.name }}</p>
-        <p class="price">{{ product.price }}</p>
-        <button class="button" type="submit">Добавить</button>
-
+<div class="container">
+    <div class="pictures">
+        <img src="{{ product.image.url }}" >
     </div>
+    <h2>{{ product.name }}</h2>
+    <p class="price">{{ product.price }} руб</p>
+    <a href="{% url 'cart:add_to_cart' product.id%}"><button class="btn btn-primary btn-lg btn-block">Добавить</button></a>
+    <a href="{% url 'products:product_list' %}"><button class="btn btn-primary btn-lg btn-block" style="margin-top:20px;">Каталог товаров</button></a>
+</div>
 
-</form>
 {% endblock content %}
 
 </body>

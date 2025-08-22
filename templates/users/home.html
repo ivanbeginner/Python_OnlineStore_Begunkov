@@ -7,10 +7,10 @@
 <body>
 
 {% block content %}
-    <p> hello {{ user.username }}</p>
-    <a href="{% url "products:product_list" %}"><button>Continue shopping </button></a>
+    <h1> Hello, {{ user.username }}</h1><br>
+    <a href="{% url "products:product_list" %}"><button class="btn btn-primary btn-lg btn-block">Каталог товаров </button></a>
     <br>
-    <a href="{% url "users:logout" %}"><button>Выйти </button></a>
+    <a href="{% url "users:logout" %}"><button class="btn btn-primary btn-lg btn-block">Выйти</button></a>
 {% endblock content %}
 </body>
 </html>

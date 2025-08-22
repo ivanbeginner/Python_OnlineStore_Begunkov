@@ -13,7 +13,7 @@
     "pk": 2,
     "fields": {
         "product": 2,
-        "quantity": 0,
+        "quantity": 63,
         "updated_at": "2025-07-03T15:09:44.370Z"
     }
 },
@@ -22,7 +22,7 @@
     "pk": 3,
     "fields": {
         "product": 5,
-        "quantity": 0,
+        "quantity": 79,
         "updated_at": "2025-07-03T15:09:44.371Z"
     }
 },
@@ -31,7 +31,7 @@
     "pk": 4,
     "fields": {
         "product": 1,
-        "quantity": 0,
+        "quantity": 82,
         "updated_at": "2025-07-03T15:09:44.372Z"
     }
 },
@@ -40,7 +40,7 @@
     "pk": 5,
     "fields": {
         "product": 4,
-        "quantity": 0,
+        "quantity": 83,
         "updated_at": "2025-07-03T15:09:44.374Z"
     }
 }

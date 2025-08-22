@@ -1,10 +1,8 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.forms import UserCreationForm
-from django.urls import reverse_lazy
-from django.views.generic import CreateView
 
-from users.forms import RegistrationForm
+from users.forms import RegistrationForm, LoginForm
+
 
 # Create your views here.
 
@@ -24,17 +22,19 @@ def register(request):
 
 
 def login_user(request):
+    form = LoginForm(request.POST)
     if request.method=='POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request,username=username,password=password)
-        if user is not None:
-            login(request,user)
-            return redirect('users:home')
-        else:
-            return render(request,'users/login.html',{'error_message':'Invalid login'})
-    else:
-        return render(request,'users/login.html')
+        if form.is_valid():
+            data = form.cleaned_data
+            username = data['username']
+            password = data['password']
+            user = authenticate(request,username=username,password=password)
+            if user is not None:
+                login(request,user)
+                return redirect('users:home')
+
+
+    return render(request,'users/login.html',{'form':form})
 
 def logout_user(request):
     logout(request)

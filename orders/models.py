@@ -10,6 +10,12 @@ class Order(models.Model):
     address = models.CharField()
     email = models.EmailField(default='')
     cart = models.ForeignKey(CartAndUser,on_delete=models.CASCADE,default=0)
+    total_cost = models.IntegerField(default=0)
+    class Status(models.TextChoices):
+        START='Заказ создан','1'
+        PROCESS='В работе','2'
+        DONE = 'Завершен','3'
+    status = models.CharField(choices=Status.choices,default=Status.START)
     class Meta:
         db_table = 'orders'
         verbose_name = 'order'

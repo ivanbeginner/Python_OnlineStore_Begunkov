@@ -38,7 +38,7 @@ LOGGING = {
     },
 }
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost','127.0.0.1','0.0.0.0']
 
 
 # Application definition
@@ -56,6 +56,8 @@ INSTALLED_APPS = [
     'products',
     'basket',
     'orders',
+
+    'django.contrib.postgres'
 
 
 ]
@@ -95,11 +97,11 @@ WSGI_APPLICATION = 'onlinestore.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'shop_postgres',
         'USER':'postgres',
         'PASSWORD':'228666',
-        'HOST':'localhost',
+        'HOST':'db',
         'PORT':'5432',
     }
 }

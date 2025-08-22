@@ -1,0 +1,32 @@
+{% extends "products/base.html"%}
+
+<body>
+{% block content %}
+<div>
+<table class="table" >
+    <thead>
+        <tr>
+            <th> Номер заказа </th>
+            <th> Заказ </th>
+            <th>Сумма заказа </th>
+            <th>Статус заказа</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order.pk }}</td>
+            <td><a href="{% url 'orders:order_detail' order.pk%}"><button class="btn btn-primary btn-sm"> Содержимое </button></a></td>
+            <td>{{ order.total_cost }}</td>
+            <td>{{ order.status }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+<a href="{% url "products:product_list" %}"><button class="btn btn-primary btn-lg btn-block" style="margin-bottom:20px;">Каталог товаров</button></a>
+
+</div>
+
+{% endblock %}
+</body>

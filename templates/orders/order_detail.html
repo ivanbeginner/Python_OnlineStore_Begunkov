@@ -1,12 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Детали заказа</title>
-</head>
+{% extends "products/base.html"%}
+
 <body>
-{% for product,quantity in products.items %}
-{{ product }} - {{ quantity }}
-{% endfor %}
+{% block content %}
+<div>
+<table class="table" >
+    <thead>
+        <tr>
+            <th> Товар </th>
+            <th> Количество </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for product,quantity in products.items %}
+        <tr>
+
+            <td>{{ product }}</td>
+            <td> {{ quantity }}</td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url "products:product_list" %}"><button class="btn btn-primary btn-lg btn-block">Каталог товаров</button></a>
+<a href="{% url "orders:order_list" %}"><button class="btn btn-primary btn-lg btn-block" style="margin-top:20px;">Каталог заказов</button></a>
+</div>
+{% endblock %}
 </body>
 </html>
