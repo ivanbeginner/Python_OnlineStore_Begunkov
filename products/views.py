@@ -7,12 +7,9 @@ from basket.forms import CartForm
 from products.models import Product
 import logging
 
-class ProductView(ListView):
-	model = Product
-	template_name = 'products/base.html'
-	context_object_name = 'products'
-	def get_queryset(self):
-		return Product.objects.all()
+def product_list(request):
+	products = Product.objects.all()
+	return render(request,'products/base.html',{'products':products})
 
 
 def product_detail(request, pk):

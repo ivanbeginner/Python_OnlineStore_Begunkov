@@ -12,7 +12,7 @@ class Product(models.Model):
     quantity = models.PositiveIntegerField(default=0)
     class Meta:
         ordering = ['name']
-        indexes = [ models.Index(fields=['id']), models.Index(fields=['name'])]
+        indexes = [models.Index(fields=['id']), models.Index(fields=['name'])]
     def __str__(self):
      return self.name
 

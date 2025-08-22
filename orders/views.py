@@ -19,22 +19,29 @@ class OrderView(LoginRequiredMixin):
 
 def create_order(request):
     cart = Cart.objects.filter(user_id=request.user.id)
+    products_and_quantity = {}
+
     if not cart:
         messages.error(request,'Ваша корзина пуста')
         return redirect('cart:cart_detail')
     if request.method=='POST':
         if request.user.is_authenticated:
             order_form = OrderForm(request.POST)
-            user = User.objects.get(id=request.user.id)
-            if order_form.is_valid():
-                order = Order(user_id = user.id if request.user.is_authenticated else None,
-                              address=order_form.cleaned_data['address'],
-                              email=order_form.cleaned_data['email'],cart = {'cart':[item.id for item in cart]})
 
+            if order_form.is_valid():
+                data = order_form.cleaned_data
+                order = Order.objects.create(user_id = request.user.id if request.user.is_authenticated else None,
+                              address=data['address'],
+                              email=data['email'],cart = {'cart':[item.id for item in cart]})
+
+                cart = Cart.objects.delete(user_id=request.user.id)
+
+
+                cart.save()
                 order.save()
 
 
-            messages.success(request,'Заказ офрмлен успешно')
+            messages.success(request,'Заказ оформлен успешно')
             return redirect('orders:order_detail')
         else:
             redirect('users:registration')

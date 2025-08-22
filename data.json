@@ -6,7 +6,9 @@
             "name": "Телевизор",
             "price": 29999,
             "description": "4K телевизор",
-            "category": 3
+            "category": 3,
+            "quantity": 100,
+            "image": "трактор.jpg"
         }
     },
     {
@@ -16,7 +18,9 @@
             "name": "Смартфон",
             "price": 19999,
             "description": "Флагманский смартфон",
-            "category": 3
+            "category": 3,
+            "quantity": 100,
+            "image": "Nike-Air-Force-1-Low-Triple-White-315115-112-Release-Date.jpg"
         }
     }
 ]

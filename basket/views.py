@@ -12,6 +12,7 @@ from django.views.decorators.http import require_POST
 @require_POST
 def add_to_cart(request,product_id):
     product = Product.objects.get(pk=product_id)
+
     if request.user.is_authenticated:
         carts = Cart.objects.filter(user=request.user,product=product)
         if carts.exists():

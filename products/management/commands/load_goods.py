@@ -13,6 +13,6 @@ class Command(BaseCommand):
 
 
         for product in Product.objects.all():
-            StockBalance.objects.get_or_create(product=product, defaults={'quantity': 0})
+            StockBalance.objects.update_or_create(product=product, defaults={'quantity': 0})
 
         self.stdout.write(self.style.SUCCESS('Successfully loaded goods data'))
