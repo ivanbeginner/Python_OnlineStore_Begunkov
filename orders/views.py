@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 from django.contrib import messages
-from basket.models import Cart
+from basket.models import CartAndUser, CartAndProduct
 from orders.forms import OrderForm
 from orders.models import Order
 from products.models import Product
@@ -18,7 +18,8 @@ class OrderView(LoginRequiredMixin):
     pass
 
 def create_order(request):
-    cart = Cart.objects.filter(user_id=request.user.id)
+    cart = CartAndUser.objects.filter(user_id=request.user.id).last()
+    cart_products = CartAndProduct.objects.filter(cart_id=cart.pk)
     products_and_quantity = {}
 
     if not cart:
@@ -32,15 +33,17 @@ def create_order(request):
                 data = order_form.cleaned_data
                 order = Order.objects.create(user_id = request.user.id if request.user.is_authenticated else None,
                               address=data['address'],
-                              email=data['email'],cart = {'cart':[item.id for item in cart]})
+                              email=data['email'],cart_id = cart.pk)
+                for cart_product in cart_products:
 
-                cart = Cart.objects.delete(user_id=request.user.id)
+                    products = Product.objects.filter(pk=cart_product.product_id)
 
+                    product_quantity = products.last().quantity
 
-                cart.save()
+                    quantity_in_cart = cart_product.quantity
+
+                    products.update(quantity=product_quantity-quantity_in_cart)
                 order.save()
-
-
             messages.success(request,'Заказ оформлен успешно')
             return redirect('orders:order_detail')
         else:
@@ -51,13 +54,11 @@ def create_order(request):
 
 def order_detail(request):
 
-    order = Order.objects.filter(user_id=request.user.id)
-
+    cart_users = CartAndUser.objects.filter(user_id=request.user.id).last()
+    cart_products = CartAndProduct.objects.filter(cart_id=cart_users.pk)
     products = {}
-    for cart_item in order[len(order)-1].cart['cart']:
-        cart = Cart.objects.filter(id=cart_item).first()
-        print(cart)
-        product = Product.objects.filter(id=cart.product.pk).first()
-        products[product.name]=cart.quantity
+    for cart_item in cart_products:
+        product = Product.objects.filter(id=cart_item.product_id).first()
+        products[product.name]=cart_item.quantity
     print(products)
     return render(request,'orders/order_detail.html',context={'products':products})
