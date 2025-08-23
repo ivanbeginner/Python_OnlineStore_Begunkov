@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
 from pathlib import Path
+
 import psycopg2
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,13 +39,12 @@ LOGGING = {
     },
 }
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1','0.0.0.0']
+ALLOWED_HOSTS = ['localhost','127.0.0.1','0.0.0.0','postgres']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'users',
     'admin_interface',
     'colorfield',
     'django.contrib.admin',
@@ -53,10 +53,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'users',
     'products',
     'basket',
     'orders',
-
     'django.contrib.postgres'
 
 
@@ -97,12 +97,15 @@ WSGI_APPLICATION = 'onlinestore.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'shop_postgres',
         'USER':'postgres',
         'PASSWORD':'228666',
-        'HOST':'db',
+        'HOST':'postgres',
         'PORT':'5432',
+        'OPTIONS':{
+            'client_encoding':'UTF8'
+        }
     }
 }
 
@@ -142,7 +145,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]

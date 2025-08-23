@@ -49,7 +49,6 @@ def create_order(request):
             for product in products:
                 StockBalance.objects.filter(product_id=product.id).update(quantity=product.quantity)
             CartAndUser.objects.create(user_id=request.user.id)
-            messages.success(request,'Заказ оформлен успешно')
             return redirect('orders:order_detail',str(order.id))
     else:
         order_form = OrderForm()
