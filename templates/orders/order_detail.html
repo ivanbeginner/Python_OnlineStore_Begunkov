@@ -1,0 +1,30 @@
+{% extends "products/base.html"%}
+
+<body>
+{% block content %}
+<div>
+<table class="table" >
+    <thead>
+        <tr>
+            <th> Товар </th>
+            <th> Количество </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for product,quantity in products.items %}
+        <tr>
+
+            <td>{{ product }}</td>
+            <td> {{ quantity }}</td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url "products:product_list" %}"><button class="btn btn-primary btn-lg btn-block">Каталог товаров</button></a>
+<a href="{% url "orders:order_list" %}"><button class="btn btn-primary btn-lg btn-block" style="margin-top:20px;">Каталог заказов</button></a>
+</div>
+{% endblock %}
+</body>
+</html>

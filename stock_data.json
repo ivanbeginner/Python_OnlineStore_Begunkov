@@ -1,0 +1,47 @@
+[
+{
+    "model": "products.stockbalance",
+    "pk": 1,
+    "fields": {
+        "product": 3,
+        "quantity": 0,
+        "updated_at": "2025-07-03T15:09:44.367Z"
+    }
+},
+{
+    "model": "products.stockbalance",
+    "pk": 2,
+    "fields": {
+        "product": 2,
+        "quantity": 63,
+        "updated_at": "2025-07-03T15:09:44.370Z"
+    }
+},
+{
+    "model": "products.stockbalance",
+    "pk": 3,
+    "fields": {
+        "product": 5,
+        "quantity": 79,
+        "updated_at": "2025-07-03T15:09:44.371Z"
+    }
+},
+{
+    "model": "products.stockbalance",
+    "pk": 4,
+    "fields": {
+        "product": 1,
+        "quantity": 82,
+        "updated_at": "2025-07-03T15:09:44.372Z"
+    }
+},
+{
+    "model": "products.stockbalance",
+    "pk": 5,
+    "fields": {
+        "product": 4,
+        "quantity": 83,
+        "updated_at": "2025-07-03T15:09:44.374Z"
+    }
+}
+]

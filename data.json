@@ -1,0 +1,80 @@
+[
+
+    {
+        "model": "products.Category",
+        "pk": 1,
+        "fields": {
+            "name": "Искусство"
+
+        }
+    },
+    {
+        "model": "products.Category",
+        "pk": 2,
+        "fields": {
+            "name": "Техника"
+        }
+    },
+
+
+    {
+        "model": "products.Product",
+        "pk": 1,
+        "fields": {
+            "name": "Бабочка",
+            "price": 80000,
+            "description": "ручная работа",
+            "category": 1,
+            "quantity": 80,
+            "image": "Risunok_Begunkov.jpg"
+        }
+    },
+    {
+        "model": "products.Product",
+        "pk": 2,
+        "fields": {
+            "name": "Бабочка",
+            "price": 80001,
+            "description": "ручная работа",
+            "category": 1,
+            "quantity": 80,
+            "image": "Risunok_Amutnykh_fmlgExt.jpg"
+        }
+    },
+    {
+        "model": "products.Product",
+        "pk": 3,
+        "fields": {
+            "name": "Персонаж",
+            "price": 90000,
+            "description": "легендарный персонаж",
+            "category": 1,
+            "quantity": 70,
+            "image": "Леоон_AC7eCKY.png"
+        }
+    },
+    {
+        "model": "products.Product",
+        "pk": 4,
+        "fields": {
+            "name": "Трактор",
+            "price": 29999,
+            "description": "Очень мощный трактор",
+            "category": 2,
+            "quantity": 100,
+            "image": "трактор.jpg"
+        }
+    },
+    {
+        "model": "products.Product",
+        "pk": 5,
+        "fields": {
+            "name": "Кроссовок",
+            "price": 19999,
+            "description": "Американский кроссовок",
+            "category": 1,
+            "quantity": 100,
+            "image": "Nike-Air-Force-1-Low-Triple-White-315115-112-Release-Date.jpg"
+        }
+    }
+]

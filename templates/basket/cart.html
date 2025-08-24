@@ -1,0 +1,76 @@
+{% extends "products/base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+</head>
+<body>
+{% block content%}
+<div style="margin-left:30px; margin-bottom:30px;" class="">
+    <h1>Your shopping cart</h1>
+    {% if messages%}
+        <ul class="messages">
+
+    {% for message in messages %}
+
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+
+            {{ message }}
+
+        </li>
+
+    {% endfor %}
+
+    </ul>
+
+    {% endif %}
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th>Товар</th>
+            <th>Стоимость товара</th>
+            <th>Удалить товар</th>
+            <th>Количество</th>
+            <th> - </th>
+            <th> + </th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for item in cart %}
+            {% with product=item.product %}
+
+                <tr>
+                    <td><a href="{% url 'products:product_detail' product.id %}">{{ product.name }}</a></td>
+                    <td>${{ product.price }}</td>
+
+                    <td>
+                        <a href="{% url 'cart:remove_from_cart' product.id %}"><button class="btn btn-primary btn-sm">Удалить</button></a>
+                    </td>
+                    <td>{{ item.quantity }}</td>
+
+                    <td>
+                        <a href="{% url 'cart:delete_item' product.id %}"><button class="btn btn-primary btn-sm">-</button></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'cart:add_to_cart' product.id %}"> <button class="btn btn-primary btn-sm">+</button></a>
+                    </td>
+                </tr>
+
+            {% endwith %}
+        {% endfor %}
+
+        <tr class="total">
+            <td>Итого</td>
+
+            <td class="num">${{ price }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="{% url "products:product_list" %}"><button class="btn btn-primary btn-lg">Каталог товаров</button></a>
+    <a href="{% url "orders:create_order" %}"><button class="btn btn-primary btn-lg">Оформть заказ</button></a>
+</div>
+{% endblock content%}
+</body>
+</html>
