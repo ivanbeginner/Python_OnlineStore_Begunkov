@@ -101,7 +101,7 @@ DATABASES = {
         'NAME': 'shop_postgres',
         'USER':'postgres',
         'PASSWORD':'228666',
-        'HOST':'postgres',
+        'HOST':'localhost',
         'PORT':'5432',
         'OPTIONS':{
             'client_encoding':'UTF8'

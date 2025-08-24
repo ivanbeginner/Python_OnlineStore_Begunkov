@@ -103,9 +103,10 @@ body {
 
 <div class="container">
     <div class="pictures">
-        <img src="{{ product.image.url }}" >
+        <img src="{{ product.image.url }}" style="width:900px;height:500px;" >
     </div>
     <h2>{{ product.name }}</h2>
+    <h3>{{ product.description }}</h3>
     <p class="price">{{ product.price }} руб</p>
     <a href="{% url 'cart:add_to_cart' product.id%}"><button class="btn btn-primary btn-lg btn-block">Добавить</button></a>
     <a href="{% url 'products:product_list' %}"><button class="btn btn-primary btn-lg btn-block" style="margin-top:20px;">Каталог товаров</button></a>

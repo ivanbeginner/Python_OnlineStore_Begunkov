@@ -41,7 +41,7 @@
             {% with product=item.product %}
 
                 <tr>
-                    <td>{{ product.name }}</td>
+                    <td><a href="{% url 'products:product_detail' product.id %}">{{ product.name }}</a></td>
                     <td>${{ product.price }}</td>
 
                     <td>
