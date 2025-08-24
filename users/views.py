@@ -7,6 +7,7 @@ from users.forms import RegistrationForm, LoginForm
 # Create your views here.
 
 def register(request):
+    """Регистрация пользователя"""
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
@@ -22,6 +23,7 @@ def register(request):
 
 
 def login_user(request):
+    """Аутентификация пользователя"""
     form = LoginForm(request.POST)
     if request.method=='POST':
         if form.is_valid():
@@ -37,7 +39,10 @@ def login_user(request):
     return render(request,'users/login.html',{'form':form})
 
 def logout_user(request):
+    """Выход пользователя из профиля"""
     logout(request)
     return render(request,'users/logout.html')
 def home(request):
+    """Профиль пользователя"""
     return render(request,'users/home.html')
+
